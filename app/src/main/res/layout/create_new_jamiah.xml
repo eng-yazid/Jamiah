@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/create_new_jam"
+    tools:context=".MasterActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_j"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_j"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="256dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:weightSum="1">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/label_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose Amount"
+            android:textColor="@color/primary_darker" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/amount_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            >
+
+        </android.support.v7.widget.AppCompatSpinner>
+<!--
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/label_months"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose months"
+            android:textColor="@color/primary_darker" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/months_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            >
+
+        </android.support.v7.widget.AppCompatSpinner>
+
+        -->
+
+        <!-- spinner of persons -->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/label_persons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose number of persons"
+            android:textColor="@color/primary_darker" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/persons_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            >
+        </android.support.v7.widget.AppCompatSpinner>
+
+
+
+        <!-- calculate Button
+         -->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/start_date_tv"
+                android:textColor="@color/primary_darker"/>
+
+            <EditText
+                android:id="@+id/start_date_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/start_date_tv"
+                android:layout_alignBottom="@+id/start_date_tv"
+                android:layout_alignParentRight="true"
+                android:hint="click to choose start date"
+                android:layout_alignParentEnd="true"
+                android:focusable="false" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="end date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/end_date_tv"
+                android:textColor="@color/primary_darker"
+                />
+
+            <EditText
+                android:id="@+id/end_date_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/end_date_tv"
+                android:layout_alignBottom="@+id/end_date_tv"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:hint="click to choose end date"
+                android:focusable="false"
+                />
+
+        </RelativeLayout>
+<!--
+        <TextView android:id="@+id/end_date_text_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="15dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="18dip"
+            android:textColor="@color/mdtp_red"/>
+-->
+
+        <TextView android:id="@+id/result_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="15dp"
+            android:text="The Result:"
+            android:gravity="center"
+            android:textSize="18dip"
+            android:textColor="@color/primary_darker"/>
+
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_create"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:text=" Create Jamiah"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/accent"/>
+
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">Jamiah</string>
+
+    <string-array name="amount_array">
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>20000</item>
+        <item>25000</item>
+        <item>30000</item>
+        <item>35000</item>
+        <item>40000</item>
+        <item>45000</item>
+        <item>500000</item>
+    </string-array>
+
+    <string-array name="months_array">
+
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+
+    <string-array name="persons_array">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="item_title">Palais Garnier</string>
+    <string name="item_desc">The Palais Garnier which locates in Paris was built from 1861 for
+        the Paris Opera.
+    </string>
+    <string name="detail_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+    </string>
+    <string name="detail_location">"8 Rue Scribe, 75009 Paris, France"</string>
+
+    <string name="welcome_msg">Welcome!</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="contacts_permission_rationale">Access to account information is required to sign in.</string>
+    <string name="invite_menu_label">Invite</string>
+    <string name="invitation_message">Please join me for a friendly chat</string>
+    <string name="invitation_cta">Call to action</string>
+    <string name="invitation_title">Friendly Chat Invite</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="fresh_config">Fresh Config</string>
+    <string name="cause_crash">Cause Crash</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+<!-- Hive tutorial for firebase -->
+
+        <string name="action_sign_in_short">Register</string>
+        <string name="email">Email</string>
+        <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
+        <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
+        <string name="change_email">Change Email</string>
+        <string name="change_password">Change Password</string>
+        <string name="send_password_reset_email">Send Password reset email</string>
+        <string name="remove_user">Remove user</string>
+        <string name="new_pass">New Password</string>
+        <string name="title_activity_profile">Firebase</string>
+        <string name="title_activity_login">Sign in</string>
+        <string name="hint_email">Email</string>
+        <string name="hint_password">Password</string>
+        <string name="hint_name">Fullname</string>
+        <string name="btn_login">LOGIN</string>
+        <string name="btn_link_to_register">Not a member? Get registered in Firebase now!</string>
+        <string name="btn_link_to_login">Already registered. Login Me!</string>
+        <string name="title_activity_reset_password">ResetPasswordActivity</string>
+        <string name="btn_forgot_password">Forgot your password?</string>
+        <string name="btn_reset_password">Reset Password</string>
+        <string name="btn_back"><![CDATA[<< Back]]></string>
+        <string name="hint_new_email">New Email</string>
+        <string name="btn_change">Change</string>
+        <string name="btn_send">Send</string>
+        <string name="btn_remove">Remove</string>
+        <string name="btn_sign_out">Sign Out</string>
+        <string name="lbl_forgot_password">Forgot password?</string>
+        <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+
+</resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.yazid.jamiah.SignInActivity">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="@dimen/tile_padding"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/profile_avator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tile_height"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/a" />
+
+
+    <TextView
+        android:id="@+id/profile_username"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tile_height"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="@string/item_title"
+        android:textColor="@color/white"
+        android:textSize="@dimen/article_titles" />
+
+    <Button
+        android:id="@+id/sing_out_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_sign_out"/>
+</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
+
