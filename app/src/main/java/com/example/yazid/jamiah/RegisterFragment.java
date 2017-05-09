@@ -30,7 +30,7 @@ public class RegisterFragment extends Fragment {
     private Button btnSignIn, btnSignUp, btnResetPassword;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
-
+    private Jamiah jamiah;
 
     @Nullable
     @Override

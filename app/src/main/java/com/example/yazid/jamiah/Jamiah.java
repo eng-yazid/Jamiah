@@ -20,7 +20,6 @@ public class Jamiah implements Serializable {
     private Date startDate;
     private Date endDate;
 
-
     public Jamiah(){
         this.jamId = counter++;
     }

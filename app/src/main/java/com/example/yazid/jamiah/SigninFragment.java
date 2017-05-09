@@ -31,6 +31,13 @@ public class SigninFragment extends Fragment {
     private Button btnSignup, btnLogin, btnReset;
     private RegisterFragment registerFragment;
 
+    //test the way of communicating the activity with the fragments
+   // OnHeadlineSelectedListener mCallback;
+
+    // Container Activity must implement this interface
+//    public interface OnHeadlineSelectedListener {
+//        public void onArticleSelected(int position);
+//    }
 
     @Nullable
     @Override
@@ -129,4 +136,20 @@ public class SigninFragment extends Fragment {
             }
         });
     }
+
+
+//    // test activity call back
+//    @Override
+//    public void onAttach(Context activity) {
+//        super.onAttach(activity);
+//
+//        // This makes sure that the container activity has implemented
+//        // the callback interface. If not, it throws an exception
+//        try {
+//            mCallback = (OnHeadlineSelectedListener) activity;
+//        } catch (ClassCastException e) {
+//            throw new ClassCastException(activity.toString()
+//                    + " must implement OnHeadlineSelectedListener");
+//        }
+//    }
 }

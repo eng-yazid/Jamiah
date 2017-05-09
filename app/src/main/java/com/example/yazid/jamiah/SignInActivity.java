@@ -29,12 +29,14 @@ public class SignInActivity extends AppCompatActivity  {
     private FirebaseAuth auth;
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
-
+    private Jamiah jamiah;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        final Intent intentFromMain = getIntent();
+        jamiah = (Jamiah) intentFromMain.getSerializableExtra("jamiah");
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -62,10 +64,14 @@ public class SignInActivity extends AppCompatActivity  {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignInActivity.this, SignupActivity.class));
+                Intent intent = new Intent(SignInActivity.this, SignupActivity.class);
+                intent.putExtra("jamiah",jamiah);
+                startActivity(intent);
+                finish();
+
+                //startActivity(new Intent(SignInActivity.this, SignupActivity.class));
             }
         });
-
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +116,8 @@ public class SignInActivity extends AppCompatActivity  {
                                         Toast.makeText(SignInActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(SignInActivity.this, MasterActivity.class);
+                                    Intent intent = new Intent(SignInActivity.this, AddUsersActivity.class);
+                                    intent.putExtra("jamiah",jamiah);
                                     startActivity(intent);
                                     finish();
                                 }

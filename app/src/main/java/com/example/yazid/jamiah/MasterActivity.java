@@ -266,58 +266,5 @@ public class MasterActivity  extends AppCompatActivity {
         }
 
     }
-//---------------------------firebase functions ----------------------------------
-//    private void attachDatabaseReadListener(){
-//
-//        if(mChildEventListener == null) {
-//            mChildEventListener = new ChildEventListener() {
-//                @Override
-//                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                    FriendlyMessage friendlyMessage = dataSnapshot.getValue(FriendlyMessage.class);
-//                    mMessageAdapter.add(friendlyMessage);
-//                }
-//
-//                @Override
-//                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//                }
-//
-//                @Override
-//                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            };
-//
-//            mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
-//        }
-//
-//    }
-//    private void detachDatabaseReadListener(){
-//        if(mChildEventListener != null) {
-//            mMessagesDatabaseReference.removeEventListener(mChildEventListener);
-//            mChildEventListener = null;
-//        }
-//    }
-//    private void onSignedInInitialize(String username){
-//        mUsername = username;
-//        attachDatabaseReadListener();
-//
-//    }
-//
-//    private void onSignedOutCleanup(){
-//        mUsername =ANONYMOUS;
-//        mMessageAdapter.clear();
-//        detachDatabaseReadListener();
-//
-//    }
+
 }

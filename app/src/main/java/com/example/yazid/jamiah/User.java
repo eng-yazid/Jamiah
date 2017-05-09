@@ -1,58 +1,44 @@
 package com.example.yazid.jamiah;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by yazid on 3/10/17.
  */
 
 public class User {
 
-    private int id;
     private String userName;
-    private String password;
+    private String email;
+    private Map<String,Boolean> involvedInJam = new HashMap<>();
 
-    public User(int id, String userName, String password) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-    }
 
-    public User(String userName) {
-        this.userName = userName;
-    }
-
-    /*
-          for Firebase database
-        public User() {
+    public User(){
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-     */
-    public User() {
-
-
-
+    public User(String email) {
+        this.email = email;
     }
 
-    public int getId() {
-        return id;
+    public User(String email,String userName) {
+        this.email = email;
+        this.userName = userName;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public String getEmail() {
+        return email;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String password) {
+        this.email = password;
     }
 }

@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG2 = "TAG2";
 
     public static final String JAMIAH_SUCCESS = "package com.example.yazid.jamiah;";
-
 
     private SigninFragment  signinFragment;
 
@@ -208,38 +206,45 @@ public class MainActivity extends AppCompatActivity {
         createJamButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jamiah = addJamiah();
 
+                jamiah = addJamiah();
+                        //TODO: change the database to be matched with the current structured object
                 if (jamiah != null) {
-                    //start new activity for persons assignment
-                    if(auth.getCurrentUser() != null) {
+
+                        // j is not the correct object-----//
+                        // mMessagesDatabaseReference.push().setValue(j);
+                        //jamiah data should be entered after adding its users
+                    //    String idFireBase =  mJamiahDatabaseReference.push().getKey();
+                    //   mJamiahDatabaseReference.child(idFireBase).setValue(jamiah);
+                    //   Toast.makeText(MainActivity.this, "jamiah added",Toast.LENGTH_LONG).show();
                         sendJam();
                         Log.d("success", jamiah.toString());
-                        Log.d(TAG, " " + numberOfMonths);
-                    }else
-                    {
-                        signinFragment= new SigninFragment();
-
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-                        transaction.replace(R.id.create_new_jam, signinFragment);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
-                    }
-
                 } else {
-                    showResult = "Error";
+                    showResult = "Jamiah not entered correctly!";
+                    resultTV.setText(showResult);
                 }
             }
         });
 
-
     } // onCreate() End
 
     public void sendJam() {
-        Intent intent = new Intent(this, AddUsersActivity.class);
-        intent.putExtra("jamiah",jamiah);
-        startActivity(intent);
+        Intent intent;
+        if(auth.getCurrentUser() != null)
+        {
+            intent = new Intent(this, AddUsersActivity.class);
+            //if user is existed, add the Jamiah to DB
+            String idFireBase =  mJamiahDatabaseReference.push().getKey();
+            mJamiahDatabaseReference.child(idFireBase).setValue(jamiah);
+            intent.putExtra("jamiah",jamiah);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(this, SignInActivity.class);
+            intent.putExtra("jamiah",jamiah);
+            startActivity(intent);
+        }
+
     }
 
     public int calculate()
@@ -259,11 +264,11 @@ public class MainActivity extends AppCompatActivity {
         editText.setText(sdf.format(calendar.getTime()));
     }
 
-    public String dateToStringConverter(Date date){
-        String myFormat = "dd/MM/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
-        return sdf.format(date);
-    }
+//    public String dateToStringConverter(Date date){
+//        String myFormat = "dd/MM/yy"; //In which you need put here
+//        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+//        return sdf.format(date);
+//    }
 
 
     public int spinnerToIntConverter(Spinner item)
@@ -314,12 +319,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             return null;
         }
-        //TODO: change the database to be matched with the current structured object
-        // j is not the correct object-----//
-       // mMessagesDatabaseReference.push().setValue(j);
-        String idFireBase =  mJamiahDatabaseReference.push().getKey();
-        mJamiahDatabaseReference.child(idFireBase).setValue(j);
-        Toast.makeText(this, "j added",Toast.LENGTH_LONG).show();
+
         return j;
     }
 
