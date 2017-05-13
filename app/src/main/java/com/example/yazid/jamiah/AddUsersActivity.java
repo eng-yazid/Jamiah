@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yazid.jamiah.model.Jamiah;
+import com.example.yazid.jamiah.model.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,6 +34,7 @@ public class AddUsersActivity extends AppCompatActivity {
     private Date start;
     private int amount, months, persons;
     private String id;
+
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mUsersDatabaseReference;
     private DatabaseReference mJamiahsDatabaseReference;

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.yazid.jamiah.model.Jamiah;
+
 import java.util.ArrayList;
 
 public class JamiahListFragment extends ListFragment {
