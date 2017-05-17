@@ -1,4 +1,4 @@
-package com.example.yazid.jamiah;
+package com.example.yazid.jamiah.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.yazid.jamiah.R;
+import com.example.yazid.jamiah.ResetPasswordActivity;
 import com.example.yazid.jamiah.model.Jamiah;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

@@ -1,4 +1,4 @@
-package com.example.yazid.jamiah;
+package com.example.yazid.jamiah.data;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.yazid.jamiah.DetailActivity;
+import com.example.yazid.jamiah.R;
 
 public class ListContentFragment extends Fragment {
 

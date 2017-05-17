@@ -1,4 +1,4 @@
-package com.example.yazid.jamiah;
+package com.example.yazid.jamiah.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.yazid.jamiah.AddUsersActivity;
+import com.example.yazid.jamiah.MainActivity;
+import com.example.yazid.jamiah.R;
+import com.example.yazid.jamiah.ResetPasswordActivity;
 import com.example.yazid.jamiah.model.Jamiah;
 import com.example.yazid.jamiah.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,7 +64,6 @@ public class SignupActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
-
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUserDatabaseReference = mFirebaseDatabase.getReference("users");

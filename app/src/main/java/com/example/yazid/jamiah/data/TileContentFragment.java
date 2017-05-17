@@ -1,4 +1,4 @@
-package com.example.yazid.jamiah;
+package com.example.yazid.jamiah.data;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,50 +16,53 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.yazid.jamiah.DetailActivity;
+import com.example.yazid.jamiah.R;
+
 /**
  * Created by yazid on 4/20/17.
  */
 
-public class CardContentFragment extends Fragment {
+public class TileContentFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view,container,false);
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view,
+                container, false);
         ContentAdapter contentAdapter = new ContentAdapter(recyclerView.getContext());
         recyclerView.setAdapter(contentAdapter);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        //setPadding for tiles to be in grid view
+        int tilePadding = getResources().getDimensionPixelSize(R.dimen.tile_padding);
+        recyclerView.setPadding(tilePadding, tilePadding,tilePadding,tilePadding);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         return recyclerView;
     }
 
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
+
         public ImageView picture;
         public TextView name;
-        public TextView description;
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
-
-            super(inflater.inflate(R.layout.item_card, parent, false));
-
-            picture = (ImageView) itemView.findViewById(R.id.card_image);
-            name = (TextView) itemView.findViewById(R.id.card_title);
-            description = (TextView) itemView.findViewById(R.id.card_text);
+            super(inflater.inflate(R.layout.item_tile, parent, false));
+            picture = (ImageView) itemView.findViewById(R.id.tile_picture);
+            name = (TextView) itemView.findViewById(R.id.tile_title);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, DetailActivity.class);
                     intent.putExtra(DetailActivity.EXTRA_POSITION, getAdapterPosition());
+
                     context.startActivity(intent);
                 }
             });
         }
     }
-
-    /**
-     * Adapter to display recycler view.
-     */
 
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder>
     {
@@ -67,18 +70,18 @@ public class CardContentFragment extends Fragment {
         // Set numbers of List in RecyclerView.
         private static final int LENGTH = 18;
         private final String[] mPlaces;
-        private final String[] mPlaceDesc;
         private final Drawable[] mPlacePictures;
+
 
         public ContentAdapter(Context context)
         {
             Resources resources = context.getResources();
             mPlaces = resources.getStringArray(R.array.places);
-            mPlaceDesc = resources.getStringArray(R.array.place_desc);
             TypedArray a = resources.obtainTypedArray(R.array.places_picture);
             mPlacePictures = new Drawable[a.length()];
-            for (int i = 0; i < mPlacePictures.length; i++) {
+            for(int i =0; i< mPlaces.length;i++){
                 mPlacePictures[i] = a.getDrawable(i);
+
             }
             a.recycle();
         }
@@ -92,8 +95,6 @@ public class CardContentFragment extends Fragment {
         public void onBindViewHolder(ViewHolder holder, int position) {
             holder.picture.setImageDrawable(mPlacePictures[position % mPlacePictures.length]);
             holder.name.setText(mPlaces[position % mPlaces.length]);
-            holder.description.setText(mPlaceDesc[position % mPlaceDesc.length]);
-
         }
 
         @Override

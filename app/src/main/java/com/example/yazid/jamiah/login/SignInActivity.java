@@ -1,4 +1,4 @@
-package com.example.yazid.jamiah;
+package com.example.yazid.jamiah.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.yazid.jamiah.AddUsersActivity;
+import com.example.yazid.jamiah.MasterActivity;
+import com.example.yazid.jamiah.R;
+import com.example.yazid.jamiah.ResetPasswordActivity;
 import com.example.yazid.jamiah.model.Jamiah;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,7 +29,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInActivity extends AppCompatActivity  {
 
-
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
@@ -33,7 +36,8 @@ public class SignInActivity extends AppCompatActivity  {
     private Jamiah jamiah;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         final Intent intentFromMain = getIntent();

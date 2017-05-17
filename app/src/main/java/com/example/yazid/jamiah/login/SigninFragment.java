@@ -1,4 +1,4 @@
-package com.example.yazid.jamiah;
+package com.example.yazid.jamiah.login;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.yazid.jamiah.R;
+import com.example.yazid.jamiah.data.TileContentFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -124,7 +126,7 @@ public class SigninFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 registerFragment = new RegisterFragment();
-                TileContentFragment  tileContentFragment= new TileContentFragment();
+                TileContentFragment tileContentFragment= new TileContentFragment();
 
                 FragmentManager fm = getFragmentManager();
 
