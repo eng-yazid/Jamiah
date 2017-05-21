@@ -17,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yazid.jamiah.login.SignInActivity;
+import com.example.yazid.jamiah.login.SigninFragment;
 import com.example.yazid.jamiah.model.Jamiah;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -24,8 +26,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
+
+import static com.example.yazid.jamiah.Util.convertDateToString;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private Calendar myCalendar;
     private Calendar myCalendar2;
     private String showResult;
-    private Date startDateD;
-    private Date endDateD;
+    private String startDateD;
+    private String endDateD;
     private int numberOfMonths;
     private int incremental;
 
@@ -52,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     private Jamiah jamiah;
-    public static final String TAG = "TAG";
+    public static final String TAG = "MainActivity";
     public static final String TAG2 = "TAG2";
 
     public static final String JAMIAH_SUCCESS = "package com.example.yazid.jamiah;";
 
-    private SigninFragment  signinFragment;
+    private SigninFragment signinFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel(startDateEt, myCalendar);
-                startDateD = myCalendar.getTime();
+                startDateD = convertDateToString(myCalendar.getTime());
 
             }
 
@@ -185,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 myCalendar2.set(Calendar.MONTH , monthOfYear);
                 myCalendar2.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel(endDateEt, myCalendar2);
-                endDateD = myCalendar2.getTime();
+                endDateD = convertDateToString(myCalendar2.getTime());
             }
         };
 
@@ -209,19 +212,18 @@ public class MainActivity extends AppCompatActivity {
         createJamButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                jamiah = new Jamiah();
                 jamiah = addJamiah();
                         //TODO: change the database to be matched with the current structured object
                 if (jamiah != null) {
 
-                        // j is not the correct object-----//
-                        // mMessagesDatabaseReference.push().setValue(j);
-                        //jamiah data should be entered after adding its users
-                    //    String idFireBase =  mJamiahDatabaseReference.push().getKey();
-                    //   mJamiahDatabaseReference.child(idFireBase).setValue(jamiah);
-                    //   Toast.makeText(MainActivity.this, "jamiah added",Toast.LENGTH_LONG).show();
-                        sendJam();
-                        Log.d("success", jamiah.toString());
+
+                    sendJam();
+                    Log.d(TAG,  "- amount: "+ jamiah.getAmount()
+                           // + "- months:"+ jamiah.getMonths() + "- persons:" + jamiah.getNumberOfPersons()
+                          //  + "- start date: " + jamiah.getStartDate().toString() + "-end Date:"+jamiah.getEndDate().toString()
+                    );
+
                 } else {
                     showResult = "Jamiah not entered correctly!";
                     resultTV.setText(showResult);
@@ -231,24 +233,6 @@ public class MainActivity extends AppCompatActivity {
 
     } // onCreate() End
 
-    public void sendJam() {
-        Intent intent;
-        if(auth.getCurrentUser() != null)
-        {
-            intent = new Intent(this, AddUsersActivity.class);
-            //if user is existed, add the Jamiah to DB
-            String idFireBase =  mJamiahDatabaseReference.push().getKey();
-            mJamiahDatabaseReference.child(idFireBase).setValue(jamiah);
-            intent.putExtra("jamiah",jamiah);
-            startActivity(intent);
-        }
-        else{
-            intent = new Intent(this, SignInActivity.class);
-            intent.putExtra("jamiah",jamiah);
-            startActivity(intent);
-        }
-
-    }
 
     public int calculate()
     {
@@ -267,13 +251,6 @@ public class MainActivity extends AppCompatActivity {
         editText.setText(sdf.format(calendar.getTime()));
     }
 
-//    public String dateToStringConverter(Date date){
-//        String myFormat = "dd/MM/yy"; //In which you need put here
-//        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
-//        return sdf.format(date);
-//    }
-
-
     public int spinnerToIntConverter(Spinner item)
     {
         String itemString = item.getSelectedItem().toString();
@@ -282,14 +259,23 @@ public class MainActivity extends AppCompatActivity {
 
     @Nullable
     public Jamiah addJamiah() {
+
         Jamiah j;
         int amountValueInt = spinnerToIntConverter(spinnerAmounts);
         int personsValueInt = spinnerToIntConverter(spinnerPersons);
         numberOfMonths = myCalendar2.get(Calendar.MONTH) - myCalendar.get(Calendar.MONTH);
+        //String ownerName = "";
 
-        //Jamiah(int id, int amount, int months,int numberOfPersons, Date startDate , Date endDate){
-        j = new Jamiah(amountValueInt,numberOfMonths,personsValueInt, startDateD, endDateD);
-        //return j;
+        //TODO: see if  we need it later to add the username from here or not?
+//        if(auth.getCurrentUser() != null) {
+//            ownerName = auth.getCurrentUser().getDisplayName();
+//        }else
+//        {
+//            ownerName = "Anonymous";
+//        }
+       //  Jamiah(int amount, int months,int numberOfPersons,String owner, Date startDate , Date endDate)
+
+        j = new Jamiah(amountValueInt,numberOfMonths,personsValueInt,"", startDateD, endDateD);
 
         if(startDateD == null || endDateD == null)
         {
@@ -315,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-        if (endDateD.before(startDateD))
+        if (myCalendar2.getTime().before(myCalendar.getTime()))
         {
             Toast.makeText(getApplicationContext(),
                     "end date is before start date :"+ 0,
@@ -325,5 +311,25 @@ public class MainActivity extends AppCompatActivity {
 
         return j;
     }
+
+    public void sendJam() {
+        Intent intent;
+        if(auth.getCurrentUser() != null)
+        {
+            intent = new Intent(this, AddUsersActivity.class);
+            //if user is existed, add the Jamiah to DB
+            //String idFireBase =  mJamiahDatabaseReference.push().getKey();
+            //mJamiahDatabaseReference.child(idFireBase).setValue(jamiah);
+            intent.putExtra("jamiah",jamiah);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(this, SignInActivity.class);
+            intent.putExtra("jamiah",jamiah);
+            startActivity(intent);
+        }
+
+    }
+
 
 }

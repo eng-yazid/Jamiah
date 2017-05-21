@@ -6,19 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.yazid.jamiah.SignInActivity">
+    tools:context="com.example.yazid.jamiah.login.SignInActivity">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="?android:attr/selectableItemBackground"
-    android:padding="@dimen/tile_padding"
+    android:padding="100dp"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/profile_avator"
         android:layout_width="match_parent"
+        android:paddingTop="@dimen/avator_size"
         android:layout_height="@dimen/tile_height"
         android:scaleType="centerCrop"
         tools:src="@drawable/a" />
@@ -31,7 +32,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         tools:text="@string/item_title"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/article_titles" />
 
     <Button

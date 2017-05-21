@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/create_new_jam"
+    android:id="@+id/add_users_activity"
     tools:context=".MainActivity">
 
 
@@ -17,7 +17,6 @@
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_add_users"
             android:layout_width="match_parent"
@@ -25,8 +24,6 @@
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-
 
     </android.support.design.widget.AppBarLayout>
 

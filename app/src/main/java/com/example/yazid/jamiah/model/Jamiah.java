@@ -1,7 +1,8 @@
 package com.example.yazid.jamiah.model;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,13 +14,15 @@ public class Jamiah implements Serializable {
 
     private static int counter =0;
 
-    public  int jamId; //for Serializable intents
+    private  int jamId; //for Serializable intents
     private String id;
     private int amount;
     private int months;
     private int numberOfPersons;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
+    private String owner;
+    private int remainingMonths;
     private Map<String , User> memebers;
 
     public Jamiah()
@@ -28,18 +31,35 @@ public class Jamiah implements Serializable {
     }
 
     public Jamiah(int amount, int months,
-                  int numberOfPersons, Date startDate , Date endDate)
+                  int numberOfPersons,String owner, String startDate , String endDate)
     {
-
         this.amount = amount;
         this.months=months;
         this.numberOfPersons = numberOfPersons;
         this.startDate =startDate;
         this.endDate = endDate;
-        this.memebers= new HashMap<>();
+        this.owner = owner;
+        remainingMonths=0;
+       // this.memebers= new HashMap<>();
     }
 
-    public Date getEndDate() {
+
+    // [START post_to_map]
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("amount", amount);
+        result.put("months", months);
+        result.put("numberOfPersons", numberOfPersons);
+        result.put("startDate", startDate);
+        result.put("endDate", endDate);
+        result.put("owner", owner);
+
+        return result;
+    }
+    // [END post_to_map]
+
+    public String getEndDate() {
         return endDate;
     }
 
@@ -55,7 +75,7 @@ public class Jamiah implements Serializable {
         return months;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
@@ -75,21 +95,19 @@ public class Jamiah implements Serializable {
         this.months = months;
     }
 
-
     public void setAmount(int amount) {
         this.amount = amount;
     }
-
 
     public void setNumberOfPersons(int numberOfPersons) {
         this.numberOfPersons = numberOfPersons;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -97,4 +115,19 @@ public class Jamiah implements Serializable {
         this.memebers = memebers;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public int getRemainingMonths() {
+        return remainingMonths;
+    }
+
+    public void setRemainingMonths(int remainingMonths) {
+        this.remainingMonths = remainingMonths;
+    }
 }

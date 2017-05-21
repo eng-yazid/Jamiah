@@ -10,7 +10,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.yazid.jamiah.model.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by yazid on 4/24/17.
@@ -22,6 +25,8 @@ public class ProfileFragment extends Fragment {
     private ImageView avator;
     private Button signOutBtn;
     private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
+    private User user;
 
     @Nullable
     @Override
@@ -32,14 +37,17 @@ public class ProfileFragment extends Fragment {
         username = (TextView) root.findViewById(R.id.profile_username);
         avator = (ImageView) root.findViewById(R.id.profile_avator);
         signOutBtn = (Button) root.findViewById(R.id.sing_out_btn);
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        //TODO view profile info
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-
+        username.setText(auth.getCurrentUser().getEmail().toString());
+        avator.setImageResource(R.drawable.c_avator);
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 auth.signOut();
+                //TODO destroy fragment after logout
                 //Intent intent =new Intent(getActivity(),)
                 //getActivity();
             }

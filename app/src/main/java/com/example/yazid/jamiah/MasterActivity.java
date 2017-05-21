@@ -17,6 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.yazid.jamiah.login.RegisterFragment;
+import com.example.yazid.jamiah.login.SignInActivity;
+import com.example.yazid.jamiah.login.SigninFragment;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +45,9 @@ public class MasterActivity  extends AppCompatActivity {
 
     private String mUsername;
 
+    private FragmentPagerAdapter mPagerAdapter;
+    private ViewPager mViewPager;
+
     //firebase auth
     private ChildEventListener mChildEventListener;
     private FirebaseAuth mFirebaseAuth, auth;
@@ -55,7 +61,7 @@ public class MasterActivity  extends AppCompatActivity {
     private GoogleApiClient mGoogleApiClient;
 
     private ProfileFragment profileFragment;
-    private SigninFragment  signinFragment;
+    private SigninFragment signinFragment;
     private RegisterFragment registerFragment = new RegisterFragment();
 
     public static final String ANONYMOUS = "anonymous";
@@ -68,10 +74,8 @@ public class MasterActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master);
 
-
         mUsername = ANONYMOUS;
 
-        //-------------------Firebase-----------------------------------------------------//
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
@@ -83,7 +87,7 @@ public class MasterActivity  extends AppCompatActivity {
             @Override
             public void onMenuTabSelected( int menuItemId) {
                 if (menuItemId == R.id.bb_menu_create) {
-                    // The user selected the "Recents" tab.
+                    // The user selected the "Recent" tab.
                     Intent intent = new Intent(MasterActivity.this, MainActivity.class);
                     startActivity(intent);
 
@@ -102,11 +106,9 @@ public class MasterActivity  extends AppCompatActivity {
 
                     }else {
 
-
                         signinFragment= new SigninFragment();
 
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
                         transaction.replace(R.id.coordinator, signinFragment);
                         transaction.addToBackStack(null);
                         transaction.commit();
@@ -115,20 +117,19 @@ public class MasterActivity  extends AppCompatActivity {
                 else if(menuItemId ==R.id.bb_menu_jamiahs)
                 {
                     // Create fragment and give it an argument specifying the article it should show
-                    CardContentFragment newFragment = new CardContentFragment();
+                    JamiahListFragment jamiahListFragment = new JamiahListFragment();
 
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     // Replace whatever is in the fragment_container view with this fragment,
 
                     // and add the transaction to the back stack so the user can navigate back
-                    transaction.replace(R.id.coordinator, newFragment);
+                    transaction.replace(R.id.coordinator, jamiahListFragment);
                     transaction.addToBackStack(null);
 
                     // Commit the transaction
                     transaction.commit();
                 }
             }
-
             @Override
             public void onMenuTabReSelected( int menuItemId) {
                 if (menuItemId == R.id.bb_menu_create) {
@@ -172,7 +173,6 @@ public class MasterActivity  extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         //------ this is the part to be used in browsing Jamiahs
 
         // Setting ViewPager for each Tabs
@@ -184,8 +184,29 @@ public class MasterActivity  extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         //------ this is the part to be used in browsing Jamiahs
 
+        /*
+        // Create the adapter that will return a fragment for each section
+        mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+            private final Fragment[] mFragments = new Fragment[] {
+                   new JamiahListFragment()
+            };
 
-
+            //TODO check in case you add another fragment to array
+            private final String mFragmentNames = "JamiahListFragment";
+            @Override
+            public Fragment getItem(int position) {
+                return mFragments[position];
+            }
+            @Override
+            public int getCount() {
+                return mFragments.length;
+            }
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mFragmentNames;
+            }
+        };
+        */
     }
 
 
@@ -226,9 +247,6 @@ public class MasterActivity  extends AppCompatActivity {
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager upViewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-//        adapter.addFragment(new ListContentFragment(), "List");
-//        adapter.addFragment(new TileContentFragment(), "Tile");
-//        adapter.addFragment(new CardContentFragment(), "Card");
         upViewPager.setAdapter(adapter);
     }
 

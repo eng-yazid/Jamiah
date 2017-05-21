@@ -1,5 +1,8 @@
 package com.example.yazid.jamiah.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by yazid on 3/10/17.
  */
@@ -29,7 +32,7 @@ public class User {
         this.hasLoggedInWithPassword = hasLoggedInWithPassword;
     }
 
-    public boolean isHasLoggedInWithPassword() {
+    public boolean getHasLoggedInWithPassword() {
 
         return hasLoggedInWithPassword;
     }
@@ -48,5 +51,13 @@ public class User {
 
     public void setEmail(String password) {
         this.email = password;
+    }
+
+    public Map<String,Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put(email,"email");
+        result.put(userName,"userName");
+
+        return result;
     }
 }

@@ -5,12 +5,10 @@
     <color name="colorAccent">#00B0FF</color>
 
 
-
         <color name="primary">#f6f6f7</color>
         <color name="primary_dark">#abc4d2</color>
         <color name="primary_darker">#14578e</color>
         <color name="primary_light">#16b1f9</color>
-
 
 
         <color name="accent">#FFFFFF</color>

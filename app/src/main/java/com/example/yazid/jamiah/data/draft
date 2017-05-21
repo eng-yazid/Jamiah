@@ -319,3 +319,31 @@
 //        detachDatabaseReadListener();
 //
 //    }
+
+
+
+                        // j is not the correct object-----//
+                        // mMessagesDatabaseReference.push().setValue(j);
+                        //jamiah data should be entered after adding its users
+                    //    String idFireBase =  mJamiahDatabaseReference.push().getKey();
+                    //   mJamiahDatabaseReference.child(idFireBase).setValue(jamiah);
+                    //   Toast.makeText(MainActivity.this, "jamiah added",Toast.LENGTH_LONG).show();
+
+
+//    public void sendJam()
+//    {
+//
+//        Intent intent = new Intent(this, MasterActivity.class);
+//
+//
+//        // j is not the correct object-----//
+//        // mMessagesDatabaseReference.push().setValue(j);
+//        //jamiah data should be entered after adding its users
+//        String idFireBase =  mJamiahsDatabaseReference.push().getKey();
+//
+//        mJamiahsDatabaseReference.child(idFireBase).child("members").setValue("");
+//           //Toast.makeText(MainActivity.this, "jamiah added",Toast.LENGTH_LONG).show();
+//
+//        intent.putExtra("jamiah",jamiah);
+//        startActivity(intent);
+//    }
