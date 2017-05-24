@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -65,6 +66,10 @@ public class JamiahDetailsActivity extends AppCompatActivity{
         mMembersReference = FirebaseDatabase.getInstance().getReference()
                 .child("jam-members").child(mJamKey);
 
+
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
         mJamReference.addValueEventListener(new ValueEventListener() {
             @Override

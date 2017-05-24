@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener EndDatePickerDialog;
     private Calendar myCalendar;
     private Calendar myCalendar2;
-    private String showResult;
+    private String showResult="";
     private String startDateD;
     private String endDateD;
     private int numberOfMonths;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         //Firebase.getDefaultConfig().setLogLevel(Logger.Level.DEBUG);
 
 
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_j));
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //init everything
         final TextView resultTV = (TextView) findViewById(R.id.result_view);
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int resulted = calculate();
                 //showResult = " كل شخص يدفع:"+ resulted  +"  شهريا";
+                showResult =  resulted +"";
                 resultTV.setText(showResult);
             }
 
@@ -134,7 +135,10 @@ public class MainActivity extends AppCompatActivity {
                 int resulted = calculate();
 
 
-                showResult = " كل شخص يدفع:" + resulted + "  شهريا";
+//                showResult = " كل شخص يدفع:" + resulted + "  شهريا";
+                showResult =  resulted +"";
+                incremental = spinnerToIntConverter(spinnerPersons);
+
                 resultTV.setText(showResult);
             }
 
@@ -143,8 +147,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         incremental = spinnerToIntConverter(spinnerPersons);
+
+        //incremental = spinnerToIntConverter(spinnerPersons);
         //------------- Dates Picker ---------------------------------------
 
         StartDatePickerDialog = new DatePickerDialog.OnDateSetListener() {
@@ -152,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
+                incremental = spinnerToIntConverter(spinnerPersons);
 
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
@@ -198,14 +204,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new DatePickerDialog(MainActivity.this, EndDatePickerDialog, myCalendar2
-                        .get(Calendar.YEAR), myCalendar2.get(Calendar.MONTH)+ incremental,
-                        myCalendar2.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(MainActivity.this, EndDatePickerDialog,
+                        myCalendar2.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH) +incremental,
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
-                incremental = 0;
-                //TODO: handle on date changed from the start date and number of persons
+                //myCalendar2.set(Calendar.MONTH,Calendar.MONTH);
+
             }
+
         });
+        incremental = 0;
 
         //end date picker
 
@@ -216,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
                 jamiah = addJamiah();
                         //TODO: change the database to be matched with the current structured object
                 if (jamiah != null) {
-
 
                     sendJam();
                     Log.d(TAG,  "- amount: "+ jamiah.getAmount()
@@ -264,16 +272,6 @@ public class MainActivity extends AppCompatActivity {
         int amountValueInt = spinnerToIntConverter(spinnerAmounts);
         int personsValueInt = spinnerToIntConverter(spinnerPersons);
         numberOfMonths = myCalendar2.get(Calendar.MONTH) - myCalendar.get(Calendar.MONTH);
-        //String ownerName = "";
-
-        //TODO: see if  we need it later to add the username from here or not?
-//        if(auth.getCurrentUser() != null) {
-//            ownerName = auth.getCurrentUser().getDisplayName();
-//        }else
-//        {
-//            ownerName = "Anonymous";
-//        }
-       //  Jamiah(int amount, int months,int numberOfPersons,String owner, Date startDate , Date endDate)
 
         j = new Jamiah(amountValueInt,numberOfMonths,personsValueInt,"", startDateD, endDateD);
 
@@ -329,6 +327,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+    }
+
+    public int incrementMonths()
+    {
+        int incremntBy=0;
+        int temp = myCalendar2.get(Calendar.MONTH);
+        incremntBy=temp+ incremental;
+        return incremntBy;
     }
 
 

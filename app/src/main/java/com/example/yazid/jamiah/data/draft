@@ -347,3 +347,14 @@
 //        intent.putExtra("jamiah",jamiah);
 //        startActivity(intent);
 //    }
+
+
+
+        //TODO: see if  we need it later to add the username from here or not? inside add JAM
+//        if(auth.getCurrentUser() != null) {
+//            ownerName = auth.getCurrentUser().getDisplayName();
+//        }else
+//        {
+//            ownerName = "Anonymous";
+//        }
+       //  Jamiah(int amount, int months,int numberOfPersons,String owner, Date startDate , Date endDate)

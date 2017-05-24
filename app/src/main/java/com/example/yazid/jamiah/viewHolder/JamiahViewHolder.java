@@ -41,7 +41,7 @@ public class JamiahViewHolder extends RecyclerView.ViewHolder {
         String eDate = jamiah.getEndDate();
         startDataTV.setText(sDate);
         endDateTV.setText(eDate);
-        remainingMonths.setText(jamiah.getMonths()+"");
+        remainingMonths.setText(""+jamiah.getMonths()+"");
     }
 
 
